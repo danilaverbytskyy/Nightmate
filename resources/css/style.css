@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lora", Serif;
+}
+
+header {
+    position: relative;
+    background-color: black;
+    height: 75vh;
+    min-height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+header video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+    position: relative;
+    z-index: 2;
+}
+
+header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: auto;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* Media Query for devices withi coarse pointers and no hover functionality */
+
+/* This will use a fallback image instead of a video for devices that commonly do not support the HTML5 video element */
+
+/*@media (pointer: coarse) and (hover: none) {*/
+/*    header {*/
+/*        background: url('https://unsplash.com/photos/milky-way-on-mountains-9wH624ALFQA') black no-repeat center center scroll;*/
+/*    }*/
+
+/*    header video {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+.navbar-brand {
+    font-size: 300%; /*mobile*/
+}
+
+.nav-link {
+    font-size:250%;
+}
+
+@media (max-width: 767px) {
+    header video {
+        width: 100%;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.contactbtn {
+    font-size: 200%;
+}
+
+@media (min-width: 996px) {
+    .navbar-brand {
+        font-size: 250%;
+    }
+
+    .nav-link {
+        font-size:150%;
+    }
+
+    header video {
+        width: 100%;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .contactbtn {
+        font-size: 170%;
+    }
+}
+
+.feature {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    font-size: 1.5rem;
+}
+
+body {
+    color: white;
+}
