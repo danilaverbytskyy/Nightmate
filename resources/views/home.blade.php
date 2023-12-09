@@ -20,20 +20,19 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ms-5">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">О Проекте</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fa-sm"></i>
-                            Blog</a>
+                            Профиль</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                            <li><a class="dropdown-item" href="portfolio-overview.html">News</a></li>
-                            <li><a class="dropdown-item" href="portfolio-item.html">Posts</a></li>
+                            <li><a class="dropdown-item" href="portfolio-overview.html">Посмотреть Сны</a></li>
+                            <li><a class="dropdown-item" href="portfolio-item.html">Редактировать профиль</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-danger" href="portfolio-item.html">Пау Пау</a></li>
+                            <li><a class="dropdown-item text-danger" href="portfolio-item.html">Выйти</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -54,9 +53,10 @@
         <div class="container h-100">
             <div class="d-flex h-100 text-center align-items-center">
                 <div class="w-100 text-white">
-                    <h1 class="display-3">A modern tracker for your dreams</h1>
-                    <p class="lead mb-0">Daily helper for remembering your every night unique experience</p>
-                    <a class="contactbtn btn btn-dark btn-lg px-4 me-sm-3 mt-2" href="#contactForm">Order Now</a>
+                    <h1 class="display-3">Современный трекер для ваших снов</h1>
+                    <p class="lead mb-0">Каждодневный способ сохранить свои уникальные ночные воспоминания</p>
+                    <a class="contactbtn btn btn-light btn-lg px-4 me-sm-3 mt-2" href="#contactForm">Регистрация</a>
+                    <a class="contactbtn btn btn-dark btn-lg px-4 me-sm-3 mt-2" href="#contactForm">Вход</a>
                 </div>
             </div>
         </div>
