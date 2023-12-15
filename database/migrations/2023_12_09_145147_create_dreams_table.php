@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('title');
             $table->text('content');
-            $table->date('date');
-            $table->bigInteger('user_id');
+            $table->date('updated_at');
+            $table->date('created_at');
+            $table->bigInteger('user_id')->default(0);
         });
     }
 

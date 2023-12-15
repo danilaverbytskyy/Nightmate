@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dream;
-use Illuminate\Support\Facades\Hash;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class DreamController extends Controller
@@ -25,20 +21,44 @@ class DreamController extends Controller
         return view('admin.dreams.create');
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request): RedirectResponse {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:63',
             'content' => 'required|string',
-            // Add more validation rules as needed
         ]);
 
-        // Exclude _token from the request data
         $data = $request->except('_token');
 
         $dream = new Dream($data);
         $dream->save();
 
+        return redirect()->route('admin.dreams.index');
+    }
+
+    public function show($id): View {
+        $dream = Dream::find($id);
+        return view('admin.dreams.show', ['dream' => $dream]);
+    }
+
+    public function edit($id): View {
+        $dream = Dream::find($id);
+        return view('admin.dreams.edit', ['dream' => $dream]);
+    }
+
+    public function update(Request $request, $id): RedirectResponse {
+        $request->validate([
+            'title' => 'required|string|max:63',
+            'content' => 'required|string',
+        ]);
+
+        $dream = Dream::find($id);
+        $dream->update($request->all());
+        return redirect()->route('admin.dreams.index');
+    }
+
+    public function destroy($id): RedirectResponse {
+        $dream = Dream::find($id);
+        $dream->delete();
         return redirect()->route('admin.dreams.index');
     }
 }
