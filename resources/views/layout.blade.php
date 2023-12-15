@@ -10,7 +10,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-        <a class="navbar-brand mx-5" href="index.html"><i class="fa-solid fa-moon fa-beat-fade"></i> Night
+        <a class="navbar-brand mx-5" href="{{route('home')}}"><i class="fa-solid fa-moon fa-beat-fade"></i> Night
             Mate</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -18,8 +18,8 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ms-5">
-                <li class="nav-item"><a class="nav-link" href="index.html">Главная</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">О Проекте</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('about')}}">О Проекте</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fa-sm"></i>

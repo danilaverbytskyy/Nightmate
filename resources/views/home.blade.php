@@ -83,31 +83,29 @@
                             <div class="col-sm-6 d-none d-sm-block form-image"></div>
                             <div class="col-sm-6 p-4 ">
                                 <div class="text-center">
-                                    <div id="contactForm" class="h3 fw-light">Contact Form</div>
-                                    <p class="mb-4 text-muted">The best way to spend your 35$</p>
+                                    <div id="contactForm" class="h3 fw-light">Контактная Форма</div>
                                 </div>
 
                                 <form method="post" action="" data-sb-form-api-token="API_TOKEN">
+                                    @csrf
                                     <!-- Name Input -->
                                     <div class="form-floating mb-3">
                                         <input class="form-control bg-dark.bg-gradient" id="name" type="text" placeholder="Name"
                                                data-sb-validations="required"/>
-                                        <label for="name">Name</label>
-                                        <div class="invalid-feedback" data-sb-feedback="name:required">Name is
-                                            required.
-                                        </div>
+                                        <label for="name">Имя</label>
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">Имя обязательно.</div>
                                     </div>
 
                                     <!-- Email Input -->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="emailAddress" type="email"
                                                placeholder="Email Address" data-sb-validations="required,email"/>
-                                        <label for="emailAddress">Email Address</label>
+                                        <label for="emailAddress">Email</label>
                                         <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email
-                                            Address is required.
+                                            обязателен.
                                         </div>
-                                        <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email
-                                            Address Email is not valid.
+                                        <div class="invalid-feedback" data-sb-feedback="emailAddress:email">
+                                            Email адресс некорректный
                                         </div>
                                     </div>
 
@@ -115,10 +113,8 @@
                                     <div class="form-floating mb-3">
                                         <textarea class="form-control" id="message" type="text" placeholder="Message"
                                                   style="height: 10rem;" data-sb-validations="required"></textarea>
-                                        <label for="message">Message</label>
-                                        <div class="invalid-feedback" data-sb-feedback="message:required">Message is
-                                            required.
-                                        </div>
+                                        <label for="message">Сообщение</label>
+                                        <div class="invalid-feedback" data-sb-feedback="message:required">Сообщение обязательно</div>
                                     </div>
 
                                     <!-- Submit success message -->
@@ -132,13 +128,13 @@
 
                                     <!-- Submit error message -->
                                     <div class="d-none" id="submitErrorMessage">
-                                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                                        <div class="text-center text-danger mb-3">Ошибка отправления!</div>
                                     </div>
 
                                     <!-- Submit button -->
                                     <div class="d-grid">
                                         <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">
-                                            Submit
+                                            Отправить
                                         </button>
                                     </div>
                                 </form>
