@@ -54,29 +54,32 @@
                                     </a>
                                     <br/>
                                     <small>
-                                        Created 01.01.2019
+                                        {{$dream->created_at}}
                                     </small>
                                 </td>
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="#">
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.dreams.show', ['id' => $dream->id])}}">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="#">
+                                    <a class="btn btn-info btn-sm" href="{{route('admin.dreams.edit', ['id' => $dream->id])}}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
+                                    <form method="post" onclick="return confirm('are you sure?')" action="{{route('admin.dreams.destroy', ['id' => $dream->id])}}" accept-charset="UTF-8">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete
-                                    </a>
+                                    </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
-                            </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
