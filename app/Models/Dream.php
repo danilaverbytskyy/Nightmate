@@ -9,10 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 class Dream extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'user_id'
     ];
 
+    public function sluggable(): array {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }

@@ -8,11 +8,11 @@ use Illuminate\View\View;
 class RegistrationController extends Controller
 {
     public function signUp() : View {
-        return view('auth.sign-up');
+        return view('pages.sign-up');
     }
 
     public function logIn() : View {
-        return view('auth.log-in');
+        return view('pages.log-in');
     }
 
     public function store(Request $request) {

@@ -57,6 +57,9 @@
                                         {{$dream->created_at}}
                                     </small>
                                 </td>
+                                <td>
+                                    {{$dream->user_id}}
+                                </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{route('admin.dreams.show', ['id' => $dream->id])}}">
                                         <i class="fas fa-folder">
@@ -85,7 +88,6 @@
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
-
             </section>
             <!-- /.content -->
         </div>

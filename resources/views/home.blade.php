@@ -18,8 +18,8 @@
                 <div class="w-100 text-white">
                     <h1 class="display-3">Современный трекер для записи снов</h1>
                     <p class="lead mb-0">Каждодневный способ сохранить свои уникальные ночные воспоминания</p>
-                    <a class="contactbtn btn btn-light btn-lg px-4 me-sm-3 mt-2" href="{{route('auth.sign-up')}}">Регистрация</a>
-                    <a class="contactbtn btn btn-dark btn-lg px-4 me-sm-3 mt-2" href="{{route('auth.log-in')}}">Вход</a>
+                    <a class="contactbtn btn btn-light btn-lg px-4 me-sm-3 mt-2" href="{{route('pages.sign-up')}}">Регистрация</a>
+                    <a class="contactbtn btn btn-dark btn-lg px-4 me-sm-3 mt-2" href="{{route('pages.log-in')}}">Вход</a>
                 </div>
             </div>
         </div>
@@ -85,7 +85,6 @@
                                 <div class="text-center">
                                     <div id="contactForm" class="h3 fw-light">Контактная Форма</div>
                                 </div>
-
                                 <form method="post" action="" data-sb-form-api-token="API_TOKEN">
                                     @csrf
                                     <!-- Name Input -->

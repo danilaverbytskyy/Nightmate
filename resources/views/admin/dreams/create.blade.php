@@ -24,7 +24,6 @@
         <section class="content">
             <div class="row">
                 <form class="col-md-6" action="{{ route('admin.dreams.store') }}" method="post" accept-charset="UTF-8">
-                          accept-charset="UTF-8">
                         @csrf
                         @include('admin.errors')
                         <div class="card card-primary">
@@ -45,6 +44,10 @@
                                 <div class="form-group">
                                     <label for="inputDescription">Content</label>
                                     <textarea id="content" name="content" class="form-control" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputUserID">User ID</label>
+                                    <input type="number" name="user_id" id="user_id" class="form-control">
                                 </div>
                                 <a href="{{route('admin.dreams.index')}}" class="ml-1 btn btn-secondary float-left">Назад</a>
                                 <input type="submit" value="Create new Dream" class="ml-1 btn btn-success float-right">
