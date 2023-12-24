@@ -41,6 +41,14 @@
 
                     <div class="card-body p-0">
                         <table class="table table-striped projects">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             @foreach($categories as $category)
                                 <tr>
                                     <td>
@@ -82,6 +90,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
