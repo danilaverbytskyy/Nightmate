@@ -43,46 +43,60 @@
 
                     <div class="card-body p-0">
                         <table class="table table-striped projects">
-                            @foreach($dreams as $dream)
+                            <thead>
                             <tr>
-                                <td>
-                                    {{$dream->id}}
-                                </td>
-                                <td>
-                                    <a>
-                                        {{$dream->title}}
-                                    </a>
-                                    <br/>
-                                    <small>
-                                        {{$dream->created_at}}
-                                    </small>
-                                </td>
-                                <td>
-                                    {{$dream->user_id}}
-                                </td>
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="{{route('admin.dreams.show', ['id' => $dream->id])}}">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        View
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="{{route('admin.dreams.edit', ['id' => $dream->id])}}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
-                                    </a>
-                                    <form method="post" onclick="return confirm('are you sure?')" action="{{route('admin.dreams.destroy', ['id' => $dream->id])}}" accept-charset="UTF-8">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </button>
-                                    </form>
-                                </td>
+                                <th scope="col">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">User_id</th>
+                                <th scope="col">Actions</th>
                             </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($dreams as $dream)
+                                <tr>
+                                    <td>
+                                        {{$dream->id}}
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{$dream->title}}
+                                        </a>
+                                        <br/>
+                                        <small>
+                                            {{$dream->created_at}}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        {{$dream->user_id}}
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-primary btn-sm"
+                                           href="{{route('admin.dreams.show', ['id' => $dream->id])}}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View
+                                        </a>
+                                        <a class="btn btn-info btn-sm"
+                                           href="{{route('admin.dreams.edit', ['id' => $dream->id])}}">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <form method="post" onclick="return confirm('are you sure?')"
+                                              action="{{route('admin.dreams.destroy', ['id' => $dream->id])}}"
+                                              accept-charset="UTF-8">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
                             @endforeach
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -97,7 +111,8 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.2.0
             </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved.
         </footer>
 
         <!-- Control Sidebar -->
