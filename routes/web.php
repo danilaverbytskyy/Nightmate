@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DreamController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,16 @@ Route::group(['prefix' => '/admin/categories'], function () {
     Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
     Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
     Route::get('/show/{id}', [CategoryController::class, 'show'])->name('admin.categories.show');
+});
+
+Route::group(['prefix' => '/admin/users'], function () {
+    Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/store', [UserController::class, 'store'])->name('admin.users.store');
+    Route::put('/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
 });
 
 Route::get('/sign-up', [RegistrationController::class, 'signUp'])->name('auth.sign-up');
