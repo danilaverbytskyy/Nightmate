@@ -28,8 +28,7 @@ class CategoryController extends Controller
 
         $data = $request->except('_token');
 
-        $category = new Category($data);
-        $category->save();
+        Category::add($data);
 
         return redirect()->route('admin.categories.index');
     }
@@ -50,7 +49,7 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::find($id);
-        $category->update($request->all());
+        $category->edit($request);
         return redirect()->route('admin.categories.index');
     }
 

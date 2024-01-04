@@ -29,8 +29,7 @@ class DreamController extends Controller
 
         $data = $request->except('_token');
 
-        $dream = new Dream($data);
-        $dream->save();
+        Dream::add($data);
 
         return redirect()->route('admin.dreams.index');
     }
@@ -52,8 +51,8 @@ class DreamController extends Controller
         ]);
 
         $dream = Dream::find($id);
-        $dream->update($request->all());
-        return redirect()->route('admin.dreams.index');
+        $dream->edit($request);
+        return to_route('admin.dreams.index');
     }
 
     public function destroy($id): RedirectResponse {
