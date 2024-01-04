@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -44,8 +45,12 @@ class UserController extends Controller
     public function update(Request $request, string $id): RedirectResponse {
         $request->validate([
             'name' => 'required|string|max:63',
-            'email' => 'required|email|string',
-            'password' => 'string|max:63'
+            'email' => [
+                Rule::unique('users')->ignore($id),
+                'email',
+                'string'
+            ],
+            'password' => 'max:63'
         ]);
 
         $user = User::findOrFail($id);
@@ -56,8 +61,7 @@ class UserController extends Controller
 
     public function destroy(string $id) : RedirectResponse
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        User::findOrFail($id)->delete();
         return to_route('admin.users.index');
     }
 }
