@@ -46,6 +46,10 @@
                                 <label for="inputEmail">Email</label>
                                 <input type="email" value="{{$user->email}}" name="email" id="email" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" value="" name="password" id="password" class="form-control">
+                            </div>
                             <a href="{{route('admin.users.index')}}" class="ml-1 btn btn-secondary float-left">Назад</a>
                             <input type="submit" value="Edit User" class="ml-1 btn btn-warning float-right">
                         </div>

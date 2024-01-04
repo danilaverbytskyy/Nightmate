@@ -22,20 +22,17 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $data = $request->except('_token');
+
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
 
-        $data = $request->except('_token');
-        if(isset($data['password'])) {
-            $data['password'] = bcrypt($data['password']);
-        }
-        $user = new User($data);
-        $user->save();
+        User::add($data);
 
-        return redirect()->route('admin.users.index');
+        return to_route('admin.users.index');
     }
 
     public function edit(string $id)
@@ -47,14 +44,12 @@ class UserController extends Controller
     public function update(Request $request, string $id): RedirectResponse {
         $request->validate([
             'name' => 'required|string|max:63',
-            'email' => 'required|email|string'
+            'email' => 'required|email|string',
+            'password' => 'string|max:63'
         ]);
 
         $user = User::findOrFail($id);
-
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->save();
+        $user->edit($request);
 
         return to_route('admin.users.index');
     }
