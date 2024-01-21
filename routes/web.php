@@ -44,7 +44,6 @@ Route::group(['prefix' => '/admin/users'], function () {
     Route::get('/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
 });
 
-Route::get('/sign-up', [RegistrationController::class, 'signUp'])->name('pages.sign-up');
-Route::get('/log-in', [RegistrationController::class, 'logIn'])->name('pages.log-in');
-Route::post('/store', [RegistrationController::class, 'store'])->name('pages.store');
-Route::get('/enter', [RegistrationController::class, 'enter'])->name('pages.enter');
+Route::get('/sign-up', [RegistrationController::class, 'signUp'])->name('auth.sign-up');
+Route::post('/store', [RegistrationController::class, 'store'])->name('auth.store');
+Route::get('/log-in', [RegistrationController::class, 'signIn'])->name('auth.sign-in');
