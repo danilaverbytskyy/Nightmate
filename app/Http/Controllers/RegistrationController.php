@@ -30,6 +30,10 @@ class RegistrationController extends Controller
     }
 
     public function enter(Request $request) {
-
+        $data = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+        
     }
 }

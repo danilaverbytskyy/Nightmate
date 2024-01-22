@@ -1,47 +1,66 @@
 @extends('layout')
 
 @section('content')
-    <div class="container-fluid ps-md-0">
-        <div class="row g-0">
-            <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-            <div class="col-md-8 col-lg-6">
-                <div class="login d-flex align-items-center py-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Welcome back!</h3>
+    <div class="auth-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card border-0 shadow rounded-3 my-5">
+                        <div class="card-body p-4 p-sm-5">
+                            <h5 class="card-title text-center mb-5 fw-light fs-5">Вход</h5>
+                            <form method="get" action="{{ route('auth.enter') }}" class="needs-validation" novalidate>
+                                @csrf
+                                <div class="form-floating mb-3">
+                                    <input name="email" type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
+                                    <label for="floatingEmail">Email</label>
+                                    <div class="invalid-feedback">Пожалуйста, введите корректный email.</div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                    <label for="floatingPassword">Пароль</label>
+                                    <div class="invalid-feedback">Пожалуйста, введите пароль.</div>
+                                </div>
 
-                                <!-- Sign In Form -->
-                                <form>
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
-                                    </div>
+                                @endif
 
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                                        <label class="form-check-label" for="rememberPasswordCheck">
-                                            Remember password
-                                        </label>
-                                    </div>
-
-                                    <div class="d-grid">
-                                        <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Sign in</button>
-                                        <div class="text-center">
-                                            <a class="small" href="#">Forgot password?</a>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
+                                <div class="d-grid">
+                                    <input value="Войти" class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                                </div>
+                                <hr class="my-4">
+                                <div class="d-grid mb-2">
+                                    <a href="{{ route('auth.sign-up') }}" class="text-center">Еще не зарегистрированы?</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        (function () {
+            'use strict'
+
+            let forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
 @endsection

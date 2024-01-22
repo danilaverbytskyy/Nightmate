@@ -45,5 +45,6 @@ Route::group(['prefix' => '/admin/users'], function () {
 });
 
 Route::get('/sign-up', [RegistrationController::class, 'signUp'])->name('auth.sign-up');
+Route::get('/enter', [RegistrationController::class, 'enter'])->name('auth.enter');
 Route::post('/store', [RegistrationController::class, 'store'])->name('auth.store');
 Route::get('/log-in', [RegistrationController::class, 'signIn'])->name('auth.sign-in');
