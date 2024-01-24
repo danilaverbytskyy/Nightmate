@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DreamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -44,7 +45,11 @@ Route::group(['prefix' => '/admin/users'], function () {
     Route::get('/show/{id}', [UserController::class, 'show'])->name('admin.users.show');
 });
 
-Route::get('/sign-up', [RegistrationController::class, 'signUp'])->name('auth.sign-up');
-Route::get('/enter', [RegistrationController::class, 'enter'])->name('auth.enter');
-Route::post('/store', [RegistrationController::class, 'store'])->name('auth.store');
-Route::get('/log-in', [RegistrationController::class, 'signIn'])->name('auth.sign-in');
+Route::get('/sign-up', [RegistrationController::class, 'signUp'])->middleware('guest')->name('auth.sign-up');
+Route::get('/enter', [RegistrationController::class, 'enter'])->middleware('guest')->name('auth.enter');
+Route::post('/store', [RegistrationController::class, 'store'])->middleware('guest')->name('auth.store');
+Route::get('/log-in', [RegistrationController::class, 'signIn'])->middleware('guest')->name('auth.sign-in');
+Route::post('/logout', [RegistrationController::class, 'destroy'])->middleware('auth')->name('auth.logout');
+
+
+Route::get('/home', [HomeController::class, 'dashboard'])->middleware('auth')->name('home.dashboard');

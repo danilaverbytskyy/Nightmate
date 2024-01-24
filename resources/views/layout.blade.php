@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Facades\Auth; @endphp
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,21 +19,24 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ms-5">
-                <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Главная</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('about')}}">О Проекте</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fa-sm"></i>
-                        Профиль</a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="portfolio-overview.html">Посмотреть Сны</a></li>
-                        <li><a class="dropdown-item" href="portfolio-item.html">Редактировать профиль</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item text-danger" href="portfolio-item.html">Выйти</a></li>
-                    </ul>
-                </li>
+                @if(Auth::check())
+                    <li class="nav-item"><a class="nav-link" href="{{route('home.dashboard')}}">Хранилище снов</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fa-sm"></i>
+                            {{Auth::getUser()['name']}}</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="portfolio-item.html">Редактировать профиль</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form action="{{route('auth.logout')}}" method="post">
+                                @csrf
+                                <li><a class="dropdown-item text-danger" onclick="event.preventDefault(); this.closest('form').submit();" href="{{route('auth.logout')}}">Выйти</a></li>
+                            </form>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
