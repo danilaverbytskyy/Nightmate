@@ -51,5 +51,7 @@ Route::post('/store', [RegistrationController::class, 'store'])->middleware('gue
 Route::get('/log-in', [RegistrationController::class, 'signIn'])->middleware('guest')->name('auth.sign-in');
 Route::post('/logout', [RegistrationController::class, 'destroy'])->middleware('auth')->name('auth.logout');
 
+Route::post('/dream/add', [DreamController::class, 'store'])->middleware('auth')->name('dream.store');
+Route::put('/dream/edit', [DreamController::class, 'update'])->middleware('auth')->name('dream.update');
 
 Route::get('/home', [HomeController::class, 'dashboard'])->middleware('auth')->name('home.dashboard');

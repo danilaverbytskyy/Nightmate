@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('title');
             $table->text('content');
+            $table->date('date');
             $table->string('slug');
             $table->date('updated_at');
             $table->date('created_at');

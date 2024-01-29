@@ -11,15 +11,18 @@ use Illuminate\View\View;
 
 class RegistrationController extends Controller
 {
-    public function signUp() : View {
+    public function signUp(): View
+    {
         return view('auth.sign-up');
     }
 
-    public function signIn() : View {
+    public function signIn(): View
+    {
         return view('auth.sign-in');
     }
 
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $data = $request->validate([
             'name' => 'required|string|max:63',
             'email' => 'required|email|unique:users',
@@ -27,13 +30,14 @@ class RegistrationController extends Controller
         ]);
 
         $user = User::create($data);
-        if($user) {
+        if ($user) {
             return to_route('auth.sign-in');
         }
         return back()->withInput()->withErrors(['email' => 'Неправильный email или пароль']);
     }
 
-    public function enter(Request $request): RedirectResponse {
+    public function enter(Request $request): RedirectResponse
+    {
         $data = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string'
@@ -49,7 +53,8 @@ class RegistrationController extends Controller
         }
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
