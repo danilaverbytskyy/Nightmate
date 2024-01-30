@@ -3,25 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dream;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DreamController extends Controller
 {
     private const TWO_DAYS_IN_MILLISECONDS = 172800;
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'title' => 'string|max:63|',
+            'content' => 'string',
+            'date' => 'date',
+        ]);
+        $data['user_id'] = Auth::id();
+        $dream = new Dream();
+        $dream->fill($data);
+        $dream->save();
+        return to_route('home.dashboard');
+    }
+
+    public function update(Request $request): RedirectResponse
     {
         $data = $request->validate([
             'title' => 'string|max:63',
-            'content' => 'string'
+            'content' => 'string',
+            'date' => 'date',
         ]);
-
-    }
-
-    public function update(Request $request)
-    {
-
+        $data['user_id'] = Auth::id();
+        $dream = Dream::findOfFail($data);
+        $dream->update($data);
+        return to_route('home.dashboard');
     }
 
     public static function getDaysStrikeByUserId(int $user_id): int

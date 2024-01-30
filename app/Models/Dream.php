@@ -17,7 +17,8 @@ class Dream extends Model
     protected $fillable = [
         'title',
         'content',
-        'user_id'
+        'date',
+        'user_id',
     ];
 
     public static function add(array $fields): void {

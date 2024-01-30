@@ -43,26 +43,35 @@
                                     <div class="modal-body">
                                         <form action="{{route('dream.store')}}" method="post">
                                             @csrf
-                                            @method('put')
-
+                                            @if($errors->any())
+                                                <ul>
+                                                @foreach($errors as $error)
+                                                        <li>{{$error->message()}}</li>
+                                                @endforeach
+                                                </ul>
+                                            @endif
+                                            <div class="form-floating mb-3">
+                                                <input name="date" type="date" class="form-control" id="floatingDate" value="{{ date('Y-m-d') }}">
+                                                <label for="floatingDate">Дата</label>
+                                            </div>
 
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="floatingInput"
+                                                <input name="title" type="text" class="form-control" id="floatingInput"
                                                        placeholder="name@example.com">
                                                 <label for="floatingInput">Название</label>
                                             </div>
                                             <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Напишите сюжет сна здесь"
-                                                          id="floatingTextarea2" style="height: 50vh"></textarea>
+                                                <textarea name="content" class="form-control" placeholder="Напишите сюжет сна здесь"
+                                                          id="floatingTextarea2" style="height: 40vh"></textarea>
                                                 <label for="floatingTextarea2">Сюжет Сна</label>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Закрыть
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Добавить</button>
+                                            </div>
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            Закрыть
-                                        </button>
-                                        <button type="button" class="btn btn-primary">Добавить</button>
                                     </div>
                                 </div>
                             </div>
