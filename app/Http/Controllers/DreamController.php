@@ -15,7 +15,7 @@ class DreamController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'title' => 'string|max:63|',
+            'title' => 'string|max:63',
             'content' => 'string',
             'date' => 'date',
         ]);
@@ -43,7 +43,7 @@ class DreamController extends Controller
     {
         $dreamsDates = DB::table('dreams')
             ->where('user_id', $user_id)
-            ->select('created_at')
+            ->select('date')
             ->get();
 
         if (count($dreamsDates) === 0) {
@@ -51,9 +51,9 @@ class DreamController extends Controller
         }
 
         $maxDaysStrike = 1;
-        $daysStrike = 1;
+        $daysStrike = 0;
         for ($i = 0; $i < count($dreamsDates) - 1; $i++) {
-            $difference = strtotime($dreamsDates[$i]->created_at) - strtotime($dreamsDates[$i + 1]->created_at);
+            $difference = strtotime($dreamsDates[$i]->date) - strtotime($dreamsDates[$i + 1]->date);
             if ($difference <= self::TWO_DAYS_IN_MILLISECONDS - 1) {
                 $daysStrike++;
             }

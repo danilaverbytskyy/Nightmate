@@ -43,12 +43,14 @@
                                     <div class="modal-body">
                                         <form action="{{route('dream.store')}}" method="post">
                                             @csrf
-                                            @if($errors->any())
-                                                <ul>
-                                                @foreach($errors as $error)
-                                                        <li>{{$error->message()}}</li>
-                                                @endforeach
-                                                </ul>
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             @endif
                                             <div class="form-floating mb-3">
                                                 <input name="date" type="date" class="form-control" id="floatingDate" value="{{ date('Y-m-d') }}">
@@ -83,12 +85,15 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapse{{$key}}" aria-expanded="false"
                                         aria-controls="flush-collapse{{$key}}">
-                                    {{$dream->created_at . ' - ' . $dream->title}}
+                                    {{$dream->date . ' - ' . $dream->title}}
                                 </button>
                             </h2>
                             <div id="flush-collapse{{$key}}" class="accordion-collapse collapse"
                                  data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-trash"></i>
+                                    <br>
                                     {{$dream->content}}
                                 </div>
                             </div>
