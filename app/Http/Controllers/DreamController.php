@@ -26,16 +26,27 @@ class DreamController extends Controller
         return to_route('home.dashboard');
     }
 
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request, int $id): RedirectResponse
     {
+        if(!$id) {
+            return to_route('home.dashboard');
+        }
         $data = $request->validate([
             'title' => 'string|max:63',
             'content' => 'string',
             'date' => 'date',
         ]);
         $data['user_id'] = Auth::id();
-        $dream = Dream::findOfFail($data);
-        $dream->update($data);
+        DB::table('dreams')->where('id', $id)->update($data);
+        return to_route('home.dashboard');
+    }
+
+    public function destroy(Request $request, string $id) : RedirectResponse
+    {
+        if (! $id) {
+            return to_route('home.dashboard');
+        }
+        Dream::destroy($id);
         return to_route('home.dashboard');
     }
 

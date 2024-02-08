@@ -1,5 +1,11 @@
 <style>
+    .dream-content {
+        margin-left: 4px;
+    }
 
+    .dream-title {
+        margin-left: 4px;
+    }
 </style>
 
 @extends('layout')
@@ -53,7 +59,8 @@
                                                 </div>
                                             @endif
                                             <div class="form-floating mb-3">
-                                                <input name="date" type="date" class="form-control" id="floatingDate" value="{{ date('Y-m-d') }}">
+                                                <input name="date" type="date" class="form-control" id="floatingDate"
+                                                       value="{{ date('Y-m-d') }}">
                                                 <label for="floatingDate">Дата</label>
                                             </div>
 
@@ -63,7 +70,8 @@
                                                 <label for="floatingInput">Название</label>
                                             </div>
                                             <div class="form-floating">
-                                                <textarea name="content" class="form-control" placeholder="Напишите сюжет сна здесь"
+                                                <textarea name="content" class="form-control"
+                                                          placeholder="Напишите сюжет сна здесь"
                                                           id="floatingTextarea2" style="height: 40vh"></textarea>
                                                 <label for="floatingTextarea2">Сюжет Сна</label>
                                             </div>
@@ -91,10 +99,89 @@
                             <div id="flush-collapse{{$key}}" class="accordion-collapse collapse"
                                  data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <i class="fa-solid fa-trash"></i>
+
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#staticUpdateBackdrop{{$key}}">
+                                        Изменить
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticUpdateBackdrop{{$key}}" data-bs-backdrop="static"
+                                         data-bs-keyboard="false"
+                                         tabindex="-1" aria-labelledby="staticUpdateBackdropLabel{{$key}}"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticUpdateBackdropLabel{{$key}}">
+                                                        Изменить
+                                                        сон</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{route('dream.update', ['id'=>$dream->id])}}" method="post">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        @if ($errors->any())
+                                                            <div class="alert alert-danger">
+                                                                <ul>
+                                                                    @foreach ($errors->all() as $error)
+                                                                        <li>{{ $error }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        @endif
+                                                        <div class="form-floating mb-3">
+                                                            <input name="date" type="date" class="form-control"
+                                                                   id="floatingDate"
+                                                                   value="{{date( 'Y-m-d', strtotime($dream->date))}}">
+                                                            <label for="floatingDate">Дата</label>
+                                                        </div>
+
+                                                        <div class="form-floating mb-3">
+                                                            <input name="title" type="text" class="form-control"
+                                                                   id="floatingInput"
+                                                                   value="{{$dream->title}}"
+                                                                   placeholder="name@example.com">
+                                                            <label for="floatingInput">Название</label>
+                                                        </div>
+                                                        <div class="form-floating">
+                                                <textarea name="content" class="form-control"
+                                                          id="floatingTextarea2"
+                                                          style="height: 40vh">{{$dream->content}}</textarea>
+                                                            <label for="floatingTextarea2">Сюжет Сна</label>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                Закрыть
+                                                            </button>
+                                                            <button type="submit" class="btn btn-warning">Изменить
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <form method="post" action="{{route('dream.destroy', ['id'=>$dream->id])}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button onclick="alert('Вы уверены?')" type="submit" class="btn btn-danger">
+                                            Удалить
+                                        </button>
+                                    </form>
+
                                     <br>
-                                    {{$dream->content}}
+                                    <h2 class="dream-title">{{$dream->title}}</h2>
+                                    <div class="dream-content">
+                                        {{$dream->content}}
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

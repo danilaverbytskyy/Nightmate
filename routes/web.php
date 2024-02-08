@@ -52,6 +52,7 @@ Route::get('/log-in', [RegistrationController::class, 'signIn'])->middleware('gu
 Route::post('/logout', [RegistrationController::class, 'destroy'])->middleware('auth')->name('auth.logout');
 
 Route::post('/dream/add', [App\Http\Controllers\DreamController::class, 'store'])->middleware('auth')->name('dream.store');
-Route::put('/dream/edit', [App\Http\Controllers\DreamController::class, 'update'])->middleware('auth')->name('dream.update');
+Route::put('/dream/update{id}', [App\Http\Controllers\DreamController::class, 'update'])->middleware('auth')->name('dream.update');
+Route::delete('/dream/destroy/{id}', [App\Http\Controllers\DreamController::class, 'destroy'])->middleware('auth')->name('dream.destroy');
 
 Route::get('/home', [HomeController::class, 'dashboard'])->middleware('auth')->name('home.dashboard');
