@@ -31,7 +31,7 @@
                 <div class="accordion accordion-flush pt-3 pb-3" id="accordionFlushExample">
                     <div class="d-grid gap-2">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-success p-3" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
                             <i class="fa-solid fa-plus"></i> Добавить Сон
                         </button>

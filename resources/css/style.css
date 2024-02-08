@@ -144,3 +144,10 @@ header .overlay {
     margin-right: auto;
     text-align: center;
 }
+
+.contact-form-image {
+    background-image: url('/img/Sigmund-Freud.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
