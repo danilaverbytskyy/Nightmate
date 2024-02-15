@@ -34,7 +34,7 @@ class Dream extends Model
     }
 
     public static function getAllByUserId(int $user_id): Collection {
-        return DB::table('dreams')->where('user_id', $user_id)->get();
+        return DB::table('dreams')->where('user_id', $user_id)->get()->reverse();
     }
 
     public static function changeDatesToDateFormat(Collection $dreams) : void {

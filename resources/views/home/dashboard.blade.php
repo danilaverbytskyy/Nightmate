@@ -29,6 +29,7 @@
                 </ul>
 
                 <label>Выберите месяц:<select id="month-select" class="form-select" aria-label="Default select example">
+                        <option value="0" {{$currentMonth == 0 ? 'selected' : '' }}>Все</option>
                         <option value="1" {{$currentMonth == 1 ? 'selected' : '' }}>Январь</option>
                         <option value="2" {{$currentMonth == 2 ? 'selected' : '' }}>Февраль</option>
                         <option value="3" {{$currentMonth == 3 ? 'selected' : '' }}>Март</option>
@@ -104,9 +105,9 @@
                     </div>
                     <div class="accordion-item ">
                         @foreach($dreams as $key => $dream)
-                            <div class="dream-item">
+                            <div class="dream-item" data-month="{{ (int)explode('-', $dream->date)[1] }}">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" id="dream-accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#flush-collapse{{$key}}" aria-expanded="false"
                                             aria-controls="flush-collapse{{$key}}">
                                         {{$dream->date . ' - ' . $dream->title}}
@@ -210,16 +211,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        window.addEventListener('DOMContentLoaded', function (event) {
-            let monthSelect = document.getElementsByName("month-select");
-            const dreamItems = document.getElementsByClassName("dream-item");
-
-            Array.from(dreamItems).forEach((elem) => {
-                console.log(elem);
-            });
-
-        });
-    </script>
 @endsection
