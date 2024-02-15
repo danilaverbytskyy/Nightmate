@@ -20,13 +20,16 @@ class HomeController extends Controller
     function dashboard() {
         $dreamQuantity = DB::table('dreams')->where('user_id', Auth::id())->count();
         $daysStrike = DreamController::getDaysStrikeByUserId(Auth::id());
+        $currentMonth = date('n');
+
         $dreams = Dream::getAllByUserId(Auth::id());
         Dream::changeDatesToDateFormat($dreams);
         $viewData = [
             'dreamQuantity' => $dreamQuantity,
             'daysStrike' => $daysStrike,
             'userName' => Auth::getUser()['name'],
-            'dreams' => $dreams
+            'dreams' => $dreams,
+            'currentMonth' => $currentMonth
         ];
         return view('home.dashboard', $viewData);
     }
