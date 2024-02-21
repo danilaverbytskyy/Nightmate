@@ -6,18 +6,31 @@ use App\Models\Dream;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    function home() {
+    public function home(): View
+    {
         return view('home');
     }
 
-    function about() {
+    public function about() : View
+    {
         return view('about');
     }
 
-    function dashboard() {
+    public function editUser(): View
+    {
+        $user = Auth::getUser();
+        $viewData = [
+            'user' => $user
+        ];
+        return view('home.edit-user', $viewData);
+    }
+
+    public function dashboard() : View
+    {
         $dreamQuantity = DB::table('dreams')->where('user_id', Auth::id())->count();
         $daysStrike = DreamController::getDaysStrikeByUserId(Auth::id());
         $currentMonth = date('n');

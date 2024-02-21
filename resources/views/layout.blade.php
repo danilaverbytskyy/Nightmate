@@ -26,7 +26,7 @@
                            data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user fa-sm"></i>
                             {{Auth::getUser()['name']}}</a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                            <li><a class="dropdown-item" href="portfolio-item.html">Редактировать профиль</a></li>
+                            <li><a class="dropdown-item" href="{{route('home.edit-user')}}">Редактировать профиль</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DreamController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
@@ -54,5 +54,8 @@ Route::post('/logout', [RegistrationController::class, 'destroy'])->middleware('
 Route::post('/dream/add', [App\Http\Controllers\DreamController::class, 'store'])->middleware('auth')->name('dream.store');
 Route::put('/dream/update{id}', [App\Http\Controllers\DreamController::class, 'update'])->middleware('auth')->name('dream.update');
 Route::delete('/dream/destroy/{id}', [App\Http\Controllers\DreamController::class, 'destroy'])->middleware('auth')->name('dream.destroy');
+
+Route::get('/edit-user', [HomeController::class, 'editUser'])->middleware('auth')->name('home.edit-user');
+Route::put('/update-user', [UserController::class, 'update'])->middleware('auth')->name('home.update-user');
 
 Route::get('/home', [HomeController::class, 'dashboard'])->middleware('auth')->name('home.dashboard');

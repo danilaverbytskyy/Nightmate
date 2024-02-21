@@ -33,34 +33,40 @@ class User extends Authenticatable
     private string $email;
     private string $password;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
         parent::__construct($attributes);
     }
 
-    public function getDreams() {
+    public function getDreams()
+    {
         return $this->hasMany(Dream::class);
     }
 
-    public static function add(array $fields): void {
+    public static function add(array $fields): void
+    {
         $user = new User($fields);
         $user->hashPassword();
         $user->save();
     }
 
-    public function edit(Request $request) : void {
+    public function edit(array $userData): void
+    {
         $this->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email')
+            'name' => $userData['name'],
+            'email' => $userData['email']
         ]);
-        if(empty($request->input('password')) === false){
+        if (empty($userData['password']) === false) {
             $this->update([
-                'password' => bcrypt($request->input('password'))
+                'password' => bcrypt($userData['password'])
             ]);
         }
+        $this->save();
     }
 
-    private function hashPassword(): void {
-        if(isset($this->password)) {
+    private function hashPassword(): void
+    {
+        if (isset($this->password)) {
             $this->password = bcrypt($this->password);
         }
     }
