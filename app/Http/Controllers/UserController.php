@@ -11,7 +11,6 @@ class UserController extends Controller
 {
     public function update(Request $request) : RedirectResponse
     {
-
         $data = $request->validate([
             'name' => 'string|max:63',
             'email' => 'string|email',
