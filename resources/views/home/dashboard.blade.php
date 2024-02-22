@@ -23,7 +23,7 @@
                         <p>Снов Записано</p>
                     </li>
                     <li class="list-group-item">
-                        <h3>{{$daysStrike}}</h3>
+                        <h3>{{$maxDaysStrike}}</h3>
                         <p>Дней Подряд</p>
                     </li>
                 </ul>
@@ -107,7 +107,8 @@
                         @foreach($dreams as $key => $dream)
                             <div class="dream-item" data-month="{{ (int)explode('-', $dream->date)[1] }}">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" id="dream-accordion-button" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" id="dream-accordion-button" type="button"
+                                            data-bs-toggle="collapse"
                                             data-bs-target="#flush-collapse{{$key}}" aria-expanded="false"
                                             aria-controls="flush-collapse{{$key}}">
                                         {{$dream->date . ' - ' . $dream->title}}

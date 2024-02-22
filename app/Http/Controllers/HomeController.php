@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Dream;
 use App\Models\DreamCollection;
-use App\Models\DreamDate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -33,18 +31,20 @@ class HomeController extends Controller
 
     public function dashboard() : View
     {
-        $dreamQuantity = Dream::getDreamsQuantity(Auth::id());
-        $daysStrike = DreamDate::getDaysStrikeByUserId(Auth::id());
-        $currentMonth = date('n');
+        $dreamCollection = new DreamCollection(['user_id' => Auth::id()]);
+        $dreamCollection->changeDatesToDateFormat();
+        $dreamCollection->sortDreamsByDate();
+        $dreamCollection->reverseDreams();
 
-        $dreams = new DreamCollection(['user_id' => Auth::id()]);
-        $dreams->changeDatesToDateFormat();
+        $dreamQuantity = $dreamCollection->getDreamsQuantity();
+        $maxDaysStrike = $dreamCollection->getMaxDaysStrike();
+        $currentMonth = date('n');
 
         $viewData = [
             'dreamQuantity' => $dreamQuantity,
-            'daysStrike' => $daysStrike,
+            'maxDaysStrike' => $maxDaysStrike,
             'userName' => Auth::getUser()['name'],
-            'dreams' => $dreams->getDreams(),
+            'dreams' => $dreamCollection->getDreams(),
             'currentMonth' => $currentMonth
         ];
         return view('home.dashboard', $viewData);

@@ -34,12 +34,6 @@ class Dream extends Model
         ]);
     }
 
-
-    public static function getDreamsQuantity(int $user_id) : int
-    {
-        return DB::table('dreams')->where('user_id', $user_id)->count();
-    }
-
     public function sluggable(): array {
         return [
             'slug' => [
