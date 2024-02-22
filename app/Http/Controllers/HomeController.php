@@ -33,18 +33,22 @@ class HomeController extends Controller
     {
         $dreamCollection = new DreamCollection(['user_id' => Auth::id()]);
         $dreamCollection->changeDatesToDateFormat();
-        $dreamCollection->sortDreamsByDate();
-        $dreamCollection->reverseDreams();
 
         $dreamQuantity = $dreamCollection->getDreamsQuantity();
         $maxDaysStrike = $dreamCollection->getMaxDaysStrike();
         $currentMonth = date('n');
+        $userName = Auth::getUser()['name'];
+
+
+        $dreamCollection->sortDreamsByDate();
+
+        $dreams = $dreamCollection->getDreams();
 
         $viewData = [
             'dreamQuantity' => $dreamQuantity,
             'maxDaysStrike' => $maxDaysStrike,
-            'userName' => Auth::getUser()['name'],
-            'dreams' => $dreamCollection->getDreams(),
+            'userName' => $userName,
+            'dreams' => $dreams,
             'currentMonth' => $currentMonth
         ];
         return view('home.dashboard', $viewData);

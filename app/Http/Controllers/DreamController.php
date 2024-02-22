@@ -27,7 +27,7 @@ class DreamController extends Controller
 
     public function update(Request $request, int $id): RedirectResponse
     {
-        if(!$id) {
+        if(! $id) {
             return to_route('home.dashboard');
         }
         $data = $request->validate([

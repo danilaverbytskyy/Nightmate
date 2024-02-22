@@ -25,6 +25,7 @@ class DreamCollection extends Model
     public function changeDatesToDateFormat(): void
     {
         foreach ($this->dreams as $dream) {
+            $dream->date = date("d-m-Y", strtotime($dream->date));
             $dream->updated_at = date("d-m-Y", strtotime($dream->updated_at));
             $dream->created_at = date("d-m-Y", strtotime($dream->created_at));
         }
@@ -37,23 +38,24 @@ class DreamCollection extends Model
 
     public function getMaxDaysStrike(): int
     {
-        if (count($this->dreams) === 0) {
+        if (empty($this->dreams)) {
             return 0;
         }
 
-        $this->sortDreamsByDate();
         $maxDaysStrike = 1;
-        $daysStrike = 0;
+        $daysStrike = 1;
         for ($i = 0; $i < count($this->dreams) - 1; $i++) {
             $difference = strtotime($this->dreams[$i]->date) - strtotime($this->dreams[$i + 1]->date);
-            if ($this->dreams[$i]->date === $this->dreams[$i + 1]->date) {
+            if ($difference === 0) {
                 continue;
             }
             if ($difference <= self::TWO_DAYS_IN_MILLISECONDS - 1) {
                 $daysStrike++;
+                if ($daysStrike > $maxDaysStrike) {
+                    $maxDaysStrike = $daysStrike;
+                }
             }
-            if ($daysStrike > $maxDaysStrike) {
-                $maxDaysStrike = $daysStrike;
+            else {
                 $daysStrike = 1;
             }
         }
