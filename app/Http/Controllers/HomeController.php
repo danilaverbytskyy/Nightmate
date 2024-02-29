@@ -39,7 +39,6 @@ class HomeController extends Controller
         $currentMonth = date('n');
         $userName = Auth::getUser()['name'];
 
-
         $dreamCollection->sortDreamsByDate();
 
         $dreams = $dreamCollection->getDreams();

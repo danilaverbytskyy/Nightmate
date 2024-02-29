@@ -49,7 +49,7 @@ class DreamCollection extends Model
             if ($difference === 0) {
                 continue;
             }
-            if ($difference <= self::TWO_DAYS_IN_MILLISECONDS - 1) {
+            if ($difference < self::TWO_DAYS_IN_MILLISECONDS) {
                 $daysStrike++;
                 if ($daysStrike > $maxDaysStrike) {
                     $maxDaysStrike = $daysStrike;

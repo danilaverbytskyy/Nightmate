@@ -6,6 +6,10 @@
     .dream-title {
         margin-left: 4px;
     }
+
+    .dream-delete-button, .dream-edit-button {
+        display: inline;
+    }
 </style>
 
 @extends('layout')
@@ -118,11 +122,12 @@
                                      data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
 
-                                        <!-- Button trigger modal -->
+                                        <div class="dream-edit-button">
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                 data-bs-target="#staticUpdateBackdrop{{$key}}">
                                             Изменить
                                         </button>
+                                        </div>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="staticUpdateBackdrop{{$key}}"
@@ -188,7 +193,7 @@
                                             </div>
                                         </div>
 
-                                        <form method="post" action="{{route('dream.destroy', ['id'=>$dream->id])}}">
+                                        <form class="dream-delete-button" method="post" action="{{route('dream.destroy', ['id'=>$dream->id])}}">
                                             @method('DELETE')
                                             @csrf
                                             <button onclick="alert('Вы уверены?')" type="submit" class="btn btn-danger">
